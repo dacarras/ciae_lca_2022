@@ -1,5 +1,5 @@
 ---
-title: "Code 02: ajustar modelo de clases latentes"
+title: "Code 01: numero de clases"
 subtitle: "Latent Class Analysis (CIAE, 2022)"
 author: "dacarras"
 date: 'Noviembre 23, 2022'

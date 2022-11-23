@@ -40,18 +40,11 @@ install.packages('ggplot2')
 
 # Descripción
 
-## listado de códigos comparatidos
+## listado de códigos compartidos
 
 -   00_preparar_datos.md
-
 -   01_numero_de_clases.md
-
 -   02_resultados.md
-
 -   03_extraer_resultados.md
-
--   04_perfil_de_respuesta.md
-
--   05_errores.md
-
--   06_ejercicio.md
+-   04_graficos.md
+-   05_ejercicio.rmd
