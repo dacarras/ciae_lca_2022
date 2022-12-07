@@ -7,6 +7,11 @@
     realizada para el curso “Metodología Cuantitativa II”, realizada
     como profesor invitado.
 
+## Slides
+
+-   Bajar
+    [slides](https://www.dropbox.com/sh/6grd4snkxpjdwtn/AACvH3TboFXsDpeGaudP56fda?dl=1)
+
 ## Instalación
 
 Para reproducir los resultados de los codigos compartidos se requiere

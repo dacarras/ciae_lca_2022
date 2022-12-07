@@ -7,6 +7,9 @@ output: github_document
 - Repositorio de los ejemplos de código empleados para ajustar modelos de clases latentes.
 - Material empleado para la clase "Modelos de clases latentes", realizada para el curso "Metodología Cuantitativa II", realizada como profesor invitado.
 
+## Slides
+
+- Bajar [slides en PDF](https://www.dropbox.com/sh/6grd4snkxpjdwtn/AACvH3TboFXsDpeGaudP56fda?dl=1)
 
 ## Instalación
 
