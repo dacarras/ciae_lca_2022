@@ -9,8 +9,8 @@
 
 ## Slides
 
--   Bajar
-    [slides](https://www.dropbox.com/sh/6grd4snkxpjdwtn/AACvH3TboFXsDpeGaudP56fda?dl=1)
+-   Bajar [slides en
+    PDF](https://www.dropbox.com/sh/6grd4snkxpjdwtn/AACvH3TboFXsDpeGaudP56fda?dl=1)
 
 ## Instalación
 
@@ -35,8 +35,14 @@ devtools::install_github('kim0sun/glca')
 install.packages('dplyr')
 install.packages('tidyr')
 
+# librerias empleadas para generar resultados en reportes
+install.packages('rmarkdown')
+
 # librerias empleadas para crear figuras y plots
 install.packages('ggplot2')
+install.packages('ggalluvial')
+install.packages('ggridges')
+install.packages('scales')
 ```
 
 > Nota: the present command requires to the `devtools` library. To

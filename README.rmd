@@ -35,8 +35,14 @@ devtools::install_github('kim0sun/glca')
 install.packages('dplyr')
 install.packages('tidyr')
 
+# librerias empleadas para generar resultados en reportes
+install.packages('rmarkdown')
+
 # librerias empleadas para crear figuras y plots
 install.packages('ggplot2')
+install.packages('ggalluvial')
+install.packages('ggridges')
+install.packages('scales')
 
 
 ```

@@ -3,33 +3,8 @@ title: "Code 06: ejercicio resuelto"
 subtitle: "Latent Class Analysis (CIAE, 2022)"
 author: "dacarras"
 date: 'Noviembre 23, 2022'
-output:
-  github_document:
-  html_document:
-    theme: paper
-    highlight: kate
-    number_sections: true
-    toc: true
-    toc_float:
-      collapsed: false
-      smooth_scroll: false
-    fig_width: 10 
-    fig_height: 8 
+output: github_document
 ---
-
-<style>
-  .main-container {
-    max-width: 1600px !important;
-  }
-  .list-group-item.active, 
-  .list-group-item.active:focus, 
-  .list-group-item.active:hover {
-    background-color: #373334;
-  }
-</style>
-
-
-
 
 ```{r setup, include=FALSE}
 
@@ -380,7 +355,8 @@ fit_table_exp <- fit_exp$gtable %>%
                  tibble::as_tibble() %>%
                  mutate(clases = c(2,3,4)) %>%
                  mutate(SIC = -.5*BIC) %>% 
-                 mutate(cmP = exp(SIC-max(SIC))/sum(exp(SIC-max(SIC))))
+                 mutate(cmP = exp(SIC-max(SIC))/sum(exp(SIC-max(SIC)))) %>%
+                 mutate(BF = exp(SIC - dplyr::lead(SIC)))
 
 # -----------------------------------------------
 # display table
@@ -435,7 +411,8 @@ fit_table_con <- fit_con$gtable %>%
                  tibble::as_tibble() %>%
                  mutate(clases = c(2,3,4)) %>%
                  mutate(SIC = -.5*BIC) %>% 
-                 mutate(cmP = exp(SIC-max(SIC))/sum(exp(SIC-max(SIC))))
+                 mutate(cmP = exp(SIC-max(SIC))/sum(exp(SIC-max(SIC)))) %>%
+                 mutate(BF = exp(SIC - dplyr::lead(SIC)))
 
 # -----------------------------------------------
 # display table
@@ -489,7 +466,8 @@ fit_table_all <- fit_all$gtable %>%
                  tibble::as_tibble() %>%
                  mutate(clases = c(2,3,4)) %>%
                  mutate(SIC = -.5*BIC) %>% 
-                 mutate(cmP = exp(SIC-max(SIC))/sum(exp(SIC-max(SIC))))
+                 mutate(cmP = exp(SIC-max(SIC))/sum(exp(SIC-max(SIC)))) %>%
+                 mutate(BF = exp(SIC - dplyr::lead(SIC)))
 
 # -----------------------------------------------
 # display table

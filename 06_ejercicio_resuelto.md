@@ -3,17 +3,6 @@ Code 06: ejercicio resuelto
 dacarras
 Noviembre 23, 2022
 
-<style>
-  .main-container {
-    max-width: 1600px !important;
-  }
-  .list-group-item.active, 
-  .list-group-item.active:focus, 
-  .list-group-item.active:hover {
-    background-color: #373334;
-  }
-</style>
-
 # Notas sobre el ejercicio resuelto
 
 -   Las soluciones incluidas siguen la idea de “opinionated data
@@ -182,6 +171,20 @@ dplyr::case_when(
 #------------------------------------------------
 
 library(dplyr)
+```
+
+    ## 
+    ## Attaching package: 'dplyr'
+
+    ## The following objects are masked from 'package:stats':
+    ## 
+    ##     filter, lag
+
+    ## The following objects are masked from 'package:base':
+    ## 
+    ##     intersect, setdiff, setequal, union
+
+``` r
 data_mex   <- ilsa::iccs_2016 %>%
               # remove labels
               ilsa::remove_labels() %>%
@@ -398,7 +401,8 @@ fit_table_exp <- fit_exp$gtable %>%
                  tibble::as_tibble() %>%
                  mutate(clases = c(2,3,4)) %>%
                  mutate(SIC = -.5*BIC) %>% 
-                 mutate(cmP = exp(SIC-max(SIC))/sum(exp(SIC-max(SIC))))
+                 mutate(cmP = exp(SIC-max(SIC))/sum(exp(SIC-max(SIC)))) %>%
+                 mutate(BF = exp(SIC - dplyr::lead(SIC)))
 
 # -----------------------------------------------
 # display table
@@ -408,11 +412,11 @@ fit_table_exp %>%
 knitr::kable(., digits = 2)
 ```
 
-| logLik |  AIC | CAIC |  BIC | entropy | Res.Df | Gsq | Boot p-value | clases |   SIC | cmP |
-|-------:|-----:|-----:|-----:|--------:|-------:|----:|-------------:|-------:|------:|----:|
-|  -1399 | 2821 | 2878 | 2867 |    0.54 |     20 |  42 |         0.00 |      2 | -1433 |   1 |
-|  -1390 | 2813 | 2902 | 2885 |    0.68 |     14 |  23 |         0.30 |      3 | -1442 |   0 |
-|  -1386 | 2819 | 2938 | 2915 |    0.77 |      8 |  16 |         0.45 |      4 | -1458 |   0 |
+| logLik |  AIC | CAIC |  BIC | entropy | Res.Df | Gsq | Boot p-value | clases |   SIC | cmP |      BF |
+|-------:|-----:|-----:|-----:|--------:|-------:|----:|-------------:|-------:|------:|----:|--------:|
+|  -1399 | 2821 | 2878 | 2867 |    0.54 |     20 |  42 |         0.00 |      2 | -1433 |   1 |    7329 |
+|  -1390 | 2813 | 2902 | 2885 |    0.68 |     14 |  23 |         0.30 |      3 | -1442 |   0 | 4395830 |
+|  -1386 | 2819 | 2938 | 2915 |    0.77 |      8 |  16 |         0.45 |      4 | -1458 |   0 |         |
 
 ``` r
 # -----------------------------------------------
@@ -460,7 +464,8 @@ fit_table_con <- fit_con$gtable %>%
                  tibble::as_tibble() %>%
                  mutate(clases = c(2,3,4)) %>%
                  mutate(SIC = -.5*BIC) %>% 
-                 mutate(cmP = exp(SIC-max(SIC))/sum(exp(SIC-max(SIC))))
+                 mutate(cmP = exp(SIC-max(SIC))/sum(exp(SIC-max(SIC)))) %>%
+                 mutate(BF = exp(SIC - dplyr::lead(SIC)))
 
 # -----------------------------------------------
 # display table
@@ -470,11 +475,11 @@ fit_table_con %>%
 knitr::kable(., digits = 2)
 ```
 
-| logLik |  AIC | CAIC |  BIC | entropy | Res.Df | Gsq | Boot p-value | clases |   SIC |  cmP |
-|-------:|-----:|-----:|-----:|--------:|-------:|----:|-------------:|-------:|------:|-----:|
-|  -1418 | 2859 | 2916 | 2905 |    0.66 |     20 |  74 |         0.00 |      2 | -1452 | 0.96 |
-|  -1403 | 2840 | 2928 | 2911 |    0.62 |     14 |  43 |         0.00 |      3 | -1456 | 0.04 |
-|  -1389 | 2823 | 2943 | 2920 |    0.76 |      8 |  15 |         0.56 |      4 | -1460 | 0.00 |
+| logLik |  AIC | CAIC |  BIC | entropy | Res.Df | Gsq | Boot p-value | clases |   SIC |  cmP |  BF |
+|-------:|-----:|-----:|-----:|--------:|-------:|----:|-------------:|-------:|------:|-----:|----:|
+|  -1418 | 2859 | 2916 | 2905 |    0.66 |     20 |  74 |         0.00 |      2 | -1452 | 0.96 |  25 |
+|  -1403 | 2840 | 2928 | 2911 |    0.62 |     14 |  43 |         0.00 |      3 | -1456 | 0.04 |  78 |
+|  -1389 | 2823 | 2943 | 2920 |    0.76 |      8 |  15 |         0.56 |      4 | -1460 | 0.00 |     |
 
 ``` r
 # -----------------------------------------------
@@ -522,7 +527,8 @@ fit_table_all <- fit_all$gtable %>%
                  tibble::as_tibble() %>%
                  mutate(clases = c(2,3,4)) %>%
                  mutate(SIC = -.5*BIC) %>% 
-                 mutate(cmP = exp(SIC-max(SIC))/sum(exp(SIC-max(SIC))))
+                 mutate(cmP = exp(SIC-max(SIC))/sum(exp(SIC-max(SIC)))) %>%
+                 mutate(BF = exp(SIC - dplyr::lead(SIC)))
 
 # -----------------------------------------------
 # display table
@@ -532,11 +538,11 @@ fit_table_all %>%
 knitr::kable(., digits = 2)
 ```
 
-| logLik |  AIC | CAIC |  BIC | entropy | Res.Df | Gsq | Boot p-value | clases |   SIC |  cmP |
-|-------:|-----:|-----:|-----:|--------:|-------:|----:|-------------:|-------:|------:|-----:|
-|  -2823 | 5667 | 5732 | 5721 |    0.59 |     20 |  94 |         0.00 |      2 | -2861 | 0.03 |
-|  -2799 | 5631 | 5731 | 5714 |    0.69 |     14 |  46 |         0.00 |      3 | -2857 | 0.97 |
-|  -2786 | 5618 | 5754 | 5731 |    0.71 |      8 |  21 |         0.22 |      4 | -2865 | 0.00 |
+| logLik |  AIC | CAIC |  BIC | entropy | Res.Df | Gsq | Boot p-value | clases |   SIC |  cmP |      BF |
+|-------:|-----:|-----:|-----:|--------:|-------:|----:|-------------:|-------:|------:|-----:|--------:|
+|  -2823 | 5667 | 5732 | 5721 |    0.59 |     20 |  94 |         0.00 |      2 | -2861 | 0.03 |    0.03 |
+|  -2799 | 5631 | 5731 | 5714 |    0.69 |     14 |  46 |         0.00 |      3 | -2857 | 0.97 | 3737.39 |
+|  -2786 | 5618 | 5754 | 5731 |    0.71 |      8 |  21 |         0.22 |      4 | -2865 | 0.00 |         |
 
 ``` r
 # -----------------------------------------------
