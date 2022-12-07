@@ -378,6 +378,7 @@ knitr::kable(., digits = 2)
 
 get_item_resp <- function(lca, item){
 
+lca_model <- lca
 n_class   <- lca_model$model$C
 
 lca_model %>%
@@ -689,9 +690,8 @@ ggplot(data=., aes(x=item_fct, y=cat_2, group=lca_text)) +
 
 ``` r
 #------------------------------------------------------------------------------
-# lca response profile
+# classification probabilities
 #------------------------------------------------------------------------------
-
 
 # -----------------------------------------------
 # boxplot

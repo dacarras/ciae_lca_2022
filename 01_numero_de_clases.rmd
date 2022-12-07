@@ -151,7 +151,6 @@ knitr::kable(., digits = 2)
 
 # Mixture Modelling
 
-
 ## Ecuación
 
 
@@ -199,7 +198,8 @@ fit_table_exp <- fit_exp$gtable %>%
                  tibble::as_tibble() %>%
                  mutate(clases = c(2,3,4)) %>%
                  mutate(SIC = -.5*BIC) %>% 
-                 mutate(cmP = exp(SIC-max(SIC))/sum(exp(SIC-max(SIC))))
+                 mutate(cmP = exp(SIC-max(SIC))/sum(exp(SIC-max(SIC)))) %>%
+                 mutate(BF = exp(SIC - dplyr::lead(SIC)))
 
 # -----------------------------------------------
 # display table
@@ -254,7 +254,8 @@ fit_table_con <- fit_con$gtable %>%
                  tibble::as_tibble() %>%
                  mutate(clases = c(2,3,4)) %>%
                  mutate(SIC = -.5*BIC) %>% 
-                 mutate(cmP = exp(SIC-max(SIC))/sum(exp(SIC-max(SIC))))
+                 mutate(cmP = exp(SIC-max(SIC))/sum(exp(SIC-max(SIC)))) %>%
+                 mutate(BF = exp(SIC - dplyr::lead(SIC)))
 
 # -----------------------------------------------
 # display table
@@ -308,10 +309,11 @@ fit_table_all <- fit_all$gtable %>%
                  tibble::as_tibble() %>%
                  mutate(clases = c(2,3,4)) %>%
                  mutate(SIC = -.5*BIC) %>% 
-                 mutate(cmP = exp(SIC-max(SIC))/sum(exp(SIC-max(SIC))))
+                 mutate(cmP = exp(SIC-max(SIC))/sum(exp(SIC-max(SIC)))) %>%
+                 mutate(BF = exp(SIC - dplyr::lead(SIC)))
 
 # -----------------------------------------------
-# display table
+# model comparison via BIC, cmP and BF
 # -----------------------------------------------
 
 fit_table_all %>%

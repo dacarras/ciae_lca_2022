@@ -48,3 +48,4 @@ install.packages('ggplot2')
 -   03_extraer_resultados.md
 -   04_graficos.md
 -   05_ejercicio.rmd
+-   06_ejercicio_resuelto.rmd

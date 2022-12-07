@@ -601,8 +601,7 @@ body {
 
 <body>
 
-<h1 id="code-02-ajustar-modelo-de-clases-latentes">Code 02: ajustar
-modelo de clases latentes</h1>
+<h1 id="code-01-numero-de-clases">Code 01: numero de clases</h1>
 <p>dacarras Noviembre 23, 2022</p>
 <h1 id="cargar-datos">Cargar datos</h1>
 <h2 id="cargar-datos-desde-archivo">Cargar datos desde archivo</h2>
@@ -1055,14 +1054,15 @@ in a country.</td>
 <span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>                 tibble<span class="sc">::</span><span class="fu">as_tibble</span>() <span class="sc">%&gt;%</span></span>
 <span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a>                 <span class="fu">mutate</span>(<span class="at">clases =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>)) <span class="sc">%&gt;%</span></span>
 <span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a>                 <span class="fu">mutate</span>(<span class="at">SIC =</span> <span class="sc">-</span>.<span class="dv">5</span><span class="sc">*</span>BIC) <span class="sc">%&gt;%</span> </span>
-<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a>                 <span class="fu">mutate</span>(<span class="at">cmP =</span> <span class="fu">exp</span>(SIC<span class="sc">-</span><span class="fu">max</span>(SIC))<span class="sc">/</span><span class="fu">sum</span>(<span class="fu">exp</span>(SIC<span class="sc">-</span><span class="fu">max</span>(SIC))))</span>
-<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a><span class="co"># -----------------------------------------------</span></span>
-<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a><span class="co"># display table</span></span>
-<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a><span class="co"># -----------------------------------------------</span></span>
-<span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-33"><a href="#cb8-33" aria-hidden="true" tabindex="-1"></a>fit_table_exp <span class="sc">%&gt;%</span></span>
-<span id="cb8-34"><a href="#cb8-34" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(., <span class="at">digits =</span> <span class="dv">2</span>)</span></code></pre></div>
+<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a>                 <span class="fu">mutate</span>(<span class="at">cmP =</span> <span class="fu">exp</span>(SIC<span class="sc">-</span><span class="fu">max</span>(SIC))<span class="sc">/</span><span class="fu">sum</span>(<span class="fu">exp</span>(SIC<span class="sc">-</span><span class="fu">max</span>(SIC)))) <span class="sc">%&gt;%</span></span>
+<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a>                 <span class="fu">mutate</span>(<span class="at">BF =</span> <span class="fu">exp</span>(SIC <span class="sc">-</span> dplyr<span class="sc">::</span><span class="fu">lead</span>(SIC)))</span>
+<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a><span class="co"># -----------------------------------------------</span></span>
+<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a><span class="co"># display table</span></span>
+<span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a><span class="co"># -----------------------------------------------</span></span>
+<span id="cb8-33"><a href="#cb8-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-34"><a href="#cb8-34" aria-hidden="true" tabindex="-1"></a>fit_table_exp <span class="sc">%&gt;%</span></span>
+<span id="cb8-35"><a href="#cb8-35" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(., <span class="at">digits =</span> <span class="dv">2</span>)</span></code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -1077,6 +1077,7 @@ in a country.</td>
 <th align="right">clases</th>
 <th align="right">SIC</th>
 <th align="right">cmP</th>
+<th align="right">BF</th>
 </tr>
 </thead>
 <tbody>
@@ -1092,6 +1093,7 @@ in a country.</td>
 <td align="right">2</td>
 <td align="right">-1997</td>
 <td align="right">0</td>
+<td align="right">0</td>
 </tr>
 <tr class="even">
 <td align="right">-1929</td>
@@ -1105,6 +1107,7 @@ in a country.</td>
 <td align="right">3</td>
 <td align="right">-1985</td>
 <td align="right">1</td>
+<td align="right">10125</td>
 </tr>
 <tr class="odd">
 <td align="right">-1919</td>
@@ -1118,6 +1121,7 @@ in a country.</td>
 <td align="right">4</td>
 <td align="right">-1994</td>
 <td align="right">0</td>
+<td align="right"></td>
 </tr>
 </tbody>
 </table>
@@ -1162,14 +1166,15 @@ in a country.</td>
 <span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a>                 tibble<span class="sc">::</span><span class="fu">as_tibble</span>() <span class="sc">%&gt;%</span></span>
 <span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a>                 <span class="fu">mutate</span>(<span class="at">clases =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>)) <span class="sc">%&gt;%</span></span>
 <span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a>                 <span class="fu">mutate</span>(<span class="at">SIC =</span> <span class="sc">-</span>.<span class="dv">5</span><span class="sc">*</span>BIC) <span class="sc">%&gt;%</span> </span>
-<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a>                 <span class="fu">mutate</span>(<span class="at">cmP =</span> <span class="fu">exp</span>(SIC<span class="sc">-</span><span class="fu">max</span>(SIC))<span class="sc">/</span><span class="fu">sum</span>(<span class="fu">exp</span>(SIC<span class="sc">-</span><span class="fu">max</span>(SIC))))</span>
-<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a><span class="co"># -----------------------------------------------</span></span>
-<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a><span class="co"># display table</span></span>
-<span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a><span class="co"># -----------------------------------------------</span></span>
-<span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-33"><a href="#cb10-33" aria-hidden="true" tabindex="-1"></a>fit_table_con <span class="sc">%&gt;%</span></span>
-<span id="cb10-34"><a href="#cb10-34" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(., <span class="at">digits =</span> <span class="dv">2</span>)</span></code></pre></div>
+<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a>                 <span class="fu">mutate</span>(<span class="at">cmP =</span> <span class="fu">exp</span>(SIC<span class="sc">-</span><span class="fu">max</span>(SIC))<span class="sc">/</span><span class="fu">sum</span>(<span class="fu">exp</span>(SIC<span class="sc">-</span><span class="fu">max</span>(SIC)))) <span class="sc">%&gt;%</span></span>
+<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a>                 <span class="fu">mutate</span>(<span class="at">BF =</span> <span class="fu">exp</span>(SIC <span class="sc">-</span> dplyr<span class="sc">::</span><span class="fu">lead</span>(SIC)))</span>
+<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a><span class="co"># -----------------------------------------------</span></span>
+<span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a><span class="co"># display table</span></span>
+<span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a><span class="co"># -----------------------------------------------</span></span>
+<span id="cb10-33"><a href="#cb10-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-34"><a href="#cb10-34" aria-hidden="true" tabindex="-1"></a>fit_table_con <span class="sc">%&gt;%</span></span>
+<span id="cb10-35"><a href="#cb10-35" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(., <span class="at">digits =</span> <span class="dv">2</span>)</span></code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -1184,6 +1189,7 @@ in a country.</td>
 <th align="right">clases</th>
 <th align="right">SIC</th>
 <th align="right">cmP</th>
+<th align="right">BF</th>
 </tr>
 </thead>
 <tbody>
@@ -1199,6 +1205,7 @@ in a country.</td>
 <td align="right">2</td>
 <td align="right">-2004</td>
 <td align="right">0</td>
+<td align="right">0</td>
 </tr>
 <tr class="even">
 <td align="right">-1938</td>
@@ -1212,6 +1219,7 @@ in a country.</td>
 <td align="right">3</td>
 <td align="right">-1994</td>
 <td align="right">1</td>
+<td align="right">29024</td>
 </tr>
 <tr class="odd">
 <td align="right">-1929</td>
@@ -1225,6 +1233,7 @@ in a country.</td>
 <td align="right">4</td>
 <td align="right">-2004</td>
 <td align="right">0</td>
+<td align="right"></td>
 </tr>
 </tbody>
 </table>
@@ -1268,14 +1277,15 @@ in a country.</td>
 <span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a>                 tibble<span class="sc">::</span><span class="fu">as_tibble</span>() <span class="sc">%&gt;%</span></span>
 <span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a>                 <span class="fu">mutate</span>(<span class="at">clases =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>)) <span class="sc">%&gt;%</span></span>
 <span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a>                 <span class="fu">mutate</span>(<span class="at">SIC =</span> <span class="sc">-</span>.<span class="dv">5</span><span class="sc">*</span>BIC) <span class="sc">%&gt;%</span> </span>
-<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a>                 <span class="fu">mutate</span>(<span class="at">cmP =</span> <span class="fu">exp</span>(SIC<span class="sc">-</span><span class="fu">max</span>(SIC))<span class="sc">/</span><span class="fu">sum</span>(<span class="fu">exp</span>(SIC<span class="sc">-</span><span class="fu">max</span>(SIC))))</span>
-<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a><span class="co"># -----------------------------------------------</span></span>
-<span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a><span class="co"># display table</span></span>
-<span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a><span class="co"># -----------------------------------------------</span></span>
-<span id="cb12-32"><a href="#cb12-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-33"><a href="#cb12-33" aria-hidden="true" tabindex="-1"></a>fit_table_all <span class="sc">%&gt;%</span></span>
-<span id="cb12-34"><a href="#cb12-34" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(., <span class="at">digits =</span> <span class="dv">2</span>)</span></code></pre></div>
+<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a>                 <span class="fu">mutate</span>(<span class="at">cmP =</span> <span class="fu">exp</span>(SIC<span class="sc">-</span><span class="fu">max</span>(SIC))<span class="sc">/</span><span class="fu">sum</span>(<span class="fu">exp</span>(SIC<span class="sc">-</span><span class="fu">max</span>(SIC)))) <span class="sc">%&gt;%</span></span>
+<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a>                 <span class="fu">mutate</span>(<span class="at">BF =</span> <span class="fu">exp</span>(SIC <span class="sc">-</span> dplyr<span class="sc">::</span><span class="fu">lead</span>(SIC)))</span>
+<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a><span class="co"># -----------------------------------------------</span></span>
+<span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a><span class="co"># model comparison via BIC, cmP and BF</span></span>
+<span id="cb12-32"><a href="#cb12-32" aria-hidden="true" tabindex="-1"></a><span class="co"># -----------------------------------------------</span></span>
+<span id="cb12-33"><a href="#cb12-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-34"><a href="#cb12-34" aria-hidden="true" tabindex="-1"></a>fit_table_all <span class="sc">%&gt;%</span></span>
+<span id="cb12-35"><a href="#cb12-35" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(., <span class="at">digits =</span> <span class="dv">2</span>)</span></code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -1290,6 +1300,7 @@ in a country.</td>
 <th align="right">clases</th>
 <th align="right">SIC</th>
 <th align="right">cmP</th>
+<th align="right">BF</th>
 </tr>
 </thead>
 <tbody>
@@ -1305,6 +1316,7 @@ in a country.</td>
 <td align="right">2</td>
 <td align="right">-3978</td>
 <td align="right">0.00</td>
+<td align="right">0</td>
 </tr>
 <tr class="even">
 <td align="right">-3883</td>
@@ -1318,6 +1330,7 @@ in a country.</td>
 <td align="right">3</td>
 <td align="right">-3944</td>
 <td align="right">0.99</td>
+<td align="right">83</td>
 </tr>
 <tr class="odd">
 <td align="right">-3866</td>
@@ -1331,6 +1344,7 @@ in a country.</td>
 <td align="right">4</td>
 <td align="right">-3949</td>
 <td align="right">0.01</td>
+<td align="right"></td>
 </tr>
 </tbody>
 </table>

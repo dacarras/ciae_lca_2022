@@ -297,6 +297,7 @@ knitr::kable(., digits = 2)
 
 get_item_resp <- function(lca, item){
 
+lca_model <- lca
 n_class   <- lca_model$model$C
 
 lca_model %>%
@@ -384,7 +385,6 @@ number_of_var  <- length(original_names)
 prob_names     <- paste0('c',seq(1:number_of_var),'_prob')
 
 names(lca_posterior) <- prob_names
-dplyr::glimpse(lca_posterior)
 
 lca_prob      <- dplyr::bind_cols(
                  data.frame(index = as.numeric(data_index)),
@@ -395,7 +395,8 @@ data_with_lca <- lca_prob %>%
                  mutate(cprob=pmax(!!!rlang::syms(prob_names))) %>%
                  dplyr::left_join(., lca_data, by = 'index') %>%
                  mutate(lca = as.factor(lca)) %>%
-                 dplyr::glimpse()
+                 mutate(class_error = 1-cprob) %>%
+                 tibble::as_tibble()
 
 return(data_with_lca)
 }
