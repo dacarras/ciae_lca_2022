@@ -12,6 +12,11 @@
 -   Bajar [slides en
     PDF](https://www.dropbox.com/sh/6grd4snkxpjdwtn/AACvH3TboFXsDpeGaudP56fda?dl=1)
 
+## Código
+
+-   Bajar [códigos de
+    ejemplos](https://www.dropbox.com/sh/l24z9hnjr0ybkd9/AAD5GUxTTLZDXMEt-r9S8MvYa?dl=1)
+
 ## Instalación
 
 Para reproducir los resultados de los codigos compartidos se requiere
@@ -43,15 +48,12 @@ install.packages('ggplot2')
 install.packages('ggalluvial')
 install.packages('ggridges')
 install.packages('scales')
+install.packages('cowplot')
 ```
-
-> Nota: the present command requires to the `devtools` library. To
-> install this library we can use the following command
-> `install.packages('devtools')`.
 
 # Descripción
 
-## listado de códigos compartidos
+## Listado de códigos
 
 -   00_preparar_datos.md
 -   01_numero_de_clases.md
