@@ -13,7 +13,7 @@ output: github_document
 
 ## Código
 
-- Bajar [códigos de ejemplos](https://www.dropbox.com/sh/l24z9hnjr0ybkd9/AAD5GUxTTLZDXMEt-r9S8MvYa?dl=1)
+- Bajar [códigos de ejemplos](https://www.dropbox.com/sh/6ybz4o6eyz0s86j/AADAm2wa5r8VW5pn2Lu7rP_ba?dl=1)
 
 ## Instalación
 
@@ -63,4 +63,8 @@ install.packages('cowplot')
 - 04_graficos.md
 - 05_ejercicio.rmd
 - 06_ejercicio_resuelto.rmd
+
+
+
+
 

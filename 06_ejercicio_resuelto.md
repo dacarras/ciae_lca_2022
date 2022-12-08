@@ -5,18 +5,18 @@ Noviembre 23, 2022
 
 # Notas sobre el ejercicio resuelto
 
--   Las soluciones incluidas siguen la idea de “opinionated data
-    analysis” (Parker, 2017). Estas consisten en soluciones razonables,
-    y no la única forma de resolver los ejercicios.
+- Las soluciones incluidas siguen la idea de “opinionated data analysis”
+  (Parker, 2017). Estas consisten en soluciones razonables, y no la
+  única forma de resolver los ejercicios.
 
 # Ejercicio
 
--   Prepare los datos
-    -   filtre los casos de Mexico
-    -   genere una muestra de calibracion (exploratoria) de 500 casos
-    -   genere una muestra de confirmatoria de 500 casos
-    -   genere una muestra total de casos
-    -   seleccione los mismos items empleados en los ejemplos anterioes
+- Prepare los datos
+  - filtre los casos de Mexico
+  - genere una muestra de calibracion (exploratoria) de 500 casos
+  - genere una muestra de confirmatoria de 500 casos
+  - genere una muestra total de casos
+  - seleccione los mismos items empleados en los ejemplos anterioes
 
 <!-- -->
 
@@ -39,25 +39,24 @@ Noviembre 23, 2022
     # display item table
     knitr::kable(items_selected)
 
--   Numero de clases
-    -   ajuste 2-4 clases sobre la muestra exploratoria
-    -   ajuste 2-4 clases sobre la muestra confirmatoria
-    -   decida el numero de clases
--   Resultados
-    -   Ajuste un modelo de 3 clases sobre la muestra total
-    -   Genere un gráfico de perfil de respuesta
-    -   Genere un gráfico de error de clasificación
--   Bonus
-    -   Compare como se ven los errores de clasificación según la
-        cantidad de observaciones con respuestas válidas.
-        -   ¿Que le pasa al error de clasificación según la cantidad de
-            respuestas observadas?
-    -   Compare un modelo de 3 y 4 clases.
-        -   Ajuste ambos modelos
-        -   Agregue las realizaciones sobre la base de datos de
-            respuestas
-        -   Genere una tabla cruzada de las realizaciones producidas
-        -   ¿Tiene sentido agregar una clase adicional?
+- Numero de clases
+  - ajuste 2-4 clases sobre la muestra exploratoria
+  - ajuste 2-4 clases sobre la muestra confirmatoria
+  - decida el numero de clases
+- Resultados
+  - Ajuste un modelo de 3 clases sobre la muestra total
+  - Genere un gráfico de perfil de respuesta
+  - Genere un gráfico de error de clasificación
+- Bonus
+  - Compare como se ven los errores de clasificación según la cantidad
+    de observaciones con respuestas válidas.
+    - ¿Que le pasa al error de clasificación según la cantidad de
+      respuestas observadas?
+  - Compare un modelo de 3 y 4 clases.
+    - Ajuste ambos modelos
+    - Agregue las realizaciones sobre la base de datos de respuestas
+    - Genere una tabla cruzada de las realizaciones producidas
+    - ¿Tiene sentido agregar una clase adicional?
 
 # Preparación de datos
 
@@ -1046,16 +1045,15 @@ geom_boxplot() +
 
 ## ¿Tiene sentido agregar una clase adicional?
 
--   Un modelo de 4 clases, presenta un mejor ajuste a los resultados
-    (LCA = 4, Gsq = 21., p = 17).
--   Comparando ambos modelos, de 3 y 4 clases, se reduce la devianza
-    entre modelos, con 4 clases (3 vs 4; Deviance = 25, p \< 0.001)
--   Sin embargo, los indicadores BIC y cmP favorecen al modelo de 3
-    clases (BIC_lca3 = 5714; BIC_lca4 = 5731)
--   El error de clasificación general, es menor en el modelo de 3
-    clases, que en el modelo de 4 clases (lca3_error = 13%, lca4_error =
-    15%)
--   Se retiene al modelo más parsimonioso de 3 clases
+- Un modelo de 4 clases, presenta un mejor ajuste a los resultados (LCA
+  = 4, Gsq = 21., p = 17).
+- Comparando ambos modelos, de 3 y 4 clases, se reduce la devianza entre
+  modelos, con 4 clases (3 vs 4; Deviance = 25, p \< 0.001)
+- Sin embargo, los indicadores BIC y cmP favorecen al modelo de 3 clases
+  (BIC_lca3 = 5714; BIC_lca4 = 5731)
+- El error de clasificación general, es menor en el modelo de 3 clases,
+  que en el modelo de 4 clases (lca3_error = 13%, lca4_error = 15%)
+- Se retiene al modelo más parsimonioso de 3 clases
 
 ### Comparación de modelos
 
